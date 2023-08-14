@@ -17,7 +17,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         
-      - name: Navigate to Repositories
+      - name: Navigate to CI-CD-Pipeline_AZ-400 Directory
         run: cd /c/Users/Dille/Documents/Repositores/FA1/CI-CD-Pipeline_AZ-400
 
       - name: Setup Node.js
@@ -42,7 +42,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         
-      - name: Navigate to Repositories
+      - name: Navigate to CI-CD-Pipeline_AZ-400 Directory
         run: cd /c/Users/Dille/Documents/Repositores/FA1/CI-CD-Pipeline_AZ-400
         
       - name: Setup Node.js
@@ -67,7 +67,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         
-      - name: Navigate to Repositories
+      - name: Navigate to CI-CD-Pipeline_AZ-400 Directory
         run: cd /c/Users/Dille/Documents/Repositores/FA1/CI-CD-Pipeline_AZ-400
         
       - name: Deploy to Staging
@@ -75,4 +75,4 @@ jobs:
 
       - name: Send Notification on Failure
         if: ${{ failure() }}
-        run: echo "Build or deployment failed. Notify the team."
+        run: echo "Build or deployment failed. Notify the team." 
