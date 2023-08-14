@@ -1,1 +1,78 @@
+# Dillen van der Merwe CI-CD-Pipeline
+# Created 2023-08-14
+# Github PipeLIne
 
+name: Node.js CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        
+      - name: Navigate to Repositories
+        run: cd /c/Users/Dille/Documents/Repositores/FA1/CI-CD-Pipeline_AZ-400
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Send Notification on Failure
+        if: ${{ failure() }}
+        run: echo "Build or deployment failed. Notify the team."
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        
+      - name: Navigate to Repositories
+        run: cd /c/Users/Dille/Documents/Repositores/FA1/CI-CD-Pipeline_AZ-400
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Unit Tests
+        run: npm test
+
+      - name: Send Notification on Failure
+        if: ${{ failure() }}
+        run: echo "Build or deployment failed. Notify the team."
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        
+      - name: Navigate to Repositories
+        run: cd /c/Users/Dille/Documents/Repositores/FA1/CI-CD-Pipeline_AZ-400
+        
+      - name: Deploy to Staging
+        run: ./deploy-script.sh
+
+      - name: Send Notification on Failure
+        if: ${{ failure() }}
+        run: echo "Build or deployment failed. Notify the team."
